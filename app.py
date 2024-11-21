@@ -27,7 +27,7 @@ def load_model(path):
     model = tf.keras.models.load_model(path)
     return model
 
-st.title("Pengenalan Aksara Sunda")
+st.title("Klasifikasi Aksara Sunda")
 
 option = st.selectbox(
     'Pilih model:',
