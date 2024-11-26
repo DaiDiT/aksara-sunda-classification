@@ -23,18 +23,13 @@ def crop_to_content(image):
     return cropped
 
 @st.cache_resource
-def load_model(path):
-    model = tf.keras.models.load_model(path)
+def load_model():
+    model = tf.keras.models.load_model('model.keras')
     return model
 
 st.title("Klasifikasi Aksara Sunda")
 
-option = st.selectbox(
-    'Pilih model:',
-    ('model1.keras', 'model2.keras', 'model3.keras', 'model4.keras'),
-)
-
-model = load_model(option)
+model = load_model()
 
 col1, col2 = st.columns(2, vertical_alignment='center')
 
@@ -56,11 +51,11 @@ def predict_image(canvas_data):
         
         cropped_img = crop_to_content(img_array)
         
-        resized_img = cv2.resize(cropped_img, (64, 64))
+        resized_img = cv2.resize(cropped_img, (32, 32))
         
         gray_img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2GRAY)
         gray_img = gray_img / 255.0
-        gray_img = gray_img.reshape(1, 64, 64, 1)
+        gray_img = gray_img.reshape(1, 32, 32, 1)
         
         if model:
             prediction = model.predict(gray_img)
