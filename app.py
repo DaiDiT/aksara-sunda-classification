@@ -36,7 +36,7 @@ col1, col2 = st.columns(2, vertical_alignment='center')
 with col1:
     canvas_result = st_canvas(
         fill_color="rgba(255, 165, 0, 0.3)",  # Warna kuas
-        stroke_width=5,                      # Ketebalan kuas
+        stroke_width=2,                      # Ketebalan kuas
         stroke_color="#000000",              # Warna garis
         background_color="#FFFFFF",         # Warna background
         height=200,                           # Tinggi canvas
@@ -72,7 +72,7 @@ with col2:
         class_labels = ['a','ae','ba','ca','da','e','eu','fa','ga','ha','i','ja','ka','la','ma','na','nga','nya','o','pa','qa','ra','sa','ta','u','va','wa','xa','ya','za']
 
         if predicted_label is not None:
-            st.write(f"### Prediksi: {class_labels[predicted_label]}")
+            st.write(f"### Prediksi: {class_labels[predicted_label].encode('utf-8').decode('utf-8')}")
             st.write(f"### Keyakinan: {confidence:.2f}")
         else:
             st.write("### Ceker Hayam")
